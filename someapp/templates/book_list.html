@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список книг</title>
+</head>
+<body>
+    <h1>Список книг</h1>
+    
+    {% for book in books %}
+        <div>
+            <a href="/books/{{ book.id }}/">
+                <strong>{{ book.name }}</strong>
+            </a>
+            - {{ book.author }}
+        </div>
+    {% empty %}
+        <p>Книг пока нет.</p>
+    {% endfor %}
+</body>
+</html>
