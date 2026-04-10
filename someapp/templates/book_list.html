@@ -1,20 +1,42 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Список книг</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: #ff9900;
+        }
+
+        .book-item {
+            margin: 10px 0;
+        }
+
+        .author-link {
+            color: #be8b5b;
+            font-size: 0.9em;
+        }
+    </style>
 </head>
+
 <body>
     <h1>Список книг</h1>
-    
+
     {% for book in books %}
-        <div>
-            <a href="/books/{{ book.id }}/">
-                <strong>{{ book.name }}</strong>
-            </a>
-            - {{ book.author }}
-        </div>
+    <div class="book-item">
+        <a href="{% url 'book_detail' pk=book.id %}">
+            <strong>{{ book.name }}</strong>
+        </a>
+        -
+        <a href="{% url 'author_detail' pk=book.author.id %}" class="author-link">
+            {{ book.author.full_name }}
+        </a>
+    </div>
     {% empty %}
-        <p>Книг пока нет.</p>
+    <p>Книг пока нет.</p>
     {% endfor %}
+
 </body>
+
 </html>

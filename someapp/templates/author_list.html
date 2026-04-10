@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Список авторов</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: #ddbd64;
+        }
+
+        .author-item {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Список авторов</h1>
+
+    {% for author in authors %}
+    <div class="author-item">
+        <a href="{% url 'author_detail' pk=author.id %}">
+            <strong>{{ author.full_name }}</strong>
+        </a>
+        <div>Книг: {{ author.books.count }}</div>
+    </div>
+    {% empty %}
+    <p>Авторов пока нет.</p>
+    {% endfor %}
+
+    <p><a href="{% url 'book_list' %}">← К списку книг</a></p>
+</body>
+
+</html>

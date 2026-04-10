@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ author.full_name }} - книги</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: #f78787;
+        }
+
+        .book-item {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1> {{ author.full_name }}</h1>
+
+    {% if author.birth_year %}
+    <p><strong>Год рождения:</strong> {{ author.birth_year }}</p>
+    {% endif %}
+
+    {% if author.bio %}
+    <p><strong>Биография:</strong> {{ author.bio }}</p>
+    {% endif %}
+
+    <h2>Книги автора ({{ books|length }}):</h2>
+
+    {% for book in books %}
+    <div class="book-item">
+        <a href="{% url 'book_detail' pk=book.id %}">
+            {{ book.name }}
+        </a>
+    </div>
+    {% empty %}
+    <p>У этого автора пока нет книг.</p>
+    {% endfor %}
+
+    <p><a href="{% url 'book_list' %}">Назад к списку книг</a></p>
+</body>
+
+</html>

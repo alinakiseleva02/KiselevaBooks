@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>{{ book.name }}</title>
 </head>
+
 <body>
     <h1>{{ book.name }}</h1>
-    <p><strong>Автор:</strong> {{ book.author }}</p>
-    
-    <p><a href="/books/">← Назад к списку</a></p>
+
+    <p><strong>Автор:</strong>
+        <a href="{% url 'author_detail' pk=book.author.id %}">
+            {{ book.author.full_name }}
+        </a>
+    </p>
+
+    <p><a href="{% url 'book_list' %}">Назад к списку книг</a></p>
 </body>
+
 </html>
